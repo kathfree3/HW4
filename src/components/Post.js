@@ -5,6 +5,7 @@ import Voter from './Voter'
 const Post = ({name, content}) => {
     // state 
     
+    
     return (
         <div>
             <hr/>

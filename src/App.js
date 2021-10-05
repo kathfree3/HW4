@@ -4,7 +4,6 @@ import React, {useState} from 'react'
 // local imports
 import Title from './components/Title'
 import NewPost from './components/NewPost'
-import Post from './components/Post'
 import PostResults from './components/PostResults'
 
  
