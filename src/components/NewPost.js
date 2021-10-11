@@ -1,57 +1,62 @@
 import React, { useState } from 'react'
 import s from 'styled-components'
 
-const Container = s.div`
+const NewPostContainer = s.div`
   margin: auto;
+  margin-bottom: 2rem;
   padding: 10px;
-  width: 50%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border: 3px solid #f2f2f2;
   border-radius: 3px;
-  h5 {
-    text-align: left;
-    display: block;
+  h3 {
+    margin: 1rem;
+    font-size: 2em;
   }
 `
-const Form = s.form`
-  text-align: left; 
-  display: block;
-`
-const SubmitButton = s.input`
+export const SubmitButton = s.input`
   background: palevioletred;
   color: white;
   margin: 1rem;
   padding: 10px 24px;
   text-align: center;
+  display: flex;
+  font-size: 22px;
+  margin-left: auto;
 `
 
 const Input = s.input`
-  font-size: 16px;
+  display: flex;
+  font-size: 22px;
   border: solid 1px #dbdbdb;
-  border-radius: 3px;
+  border-radius: 5px;
   color: #262626;
-  padding: 8px;
-  width: 80%;
-  margin: 1rem;
+  padding: 16px;
+  width: 95%;
+  margin: 2rem 1rem;
+  height: ${props => (props.desc ? '100px' : '56px')};
 `
 
-const NewPost = ({ setNewData }) => {
+const NewPost = ({ postData, setPostData }) => {
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
 
+  const submit = () => {
+    setPostData([...postData, { name, content }])
+    setName('')
+    setContent('')
+  }
   const shouldBeDisabled = name === '' || content === ''
-
   return (
-    <Container>
-      <h5> New Post</h5>
-      <Form>
-        <Input type="text" onChange={e => setName(e.target.value)} placeholder="Name..." />
-        <Input type="text" onChange={e => setContent(e.target.value)} placeholder="Write a New Post..." />
-        <SubmitButton type="reset" onClick={() => setNewData({ name, content })} disabled={shouldBeDisabled} value="Submit" />
-      </Form>
-    </Container>
+    <NewPostContainer>
+      <h3> New Post</h3>
+      <form>
+        <Input value={name} type="text" onChange={e => setName(e.target.value)} placeholder="Name..." />
+        <Input desc value={content} type="text" onChange={e => setContent(e.target.value)} placeholder="Write a New Post..." />
+        <SubmitButton type="reset" onClick={() => submit()} disabled={shouldBeDisabled} value="Submit" />
+      </form>
+    </NewPostContainer>
   )
 }
 

@@ -1,28 +1,33 @@
 // package imports
 import React, { useState } from 'react'
+import s from 'styled-components'
 
 // local imports
 import Title from './components/Title'
 import NewPost from './components/NewPost'
 import PostResults from './components/PostResults'
-// import './App.css'
+import './App.css'
+
+const Container = s.div`
+  margin: auto;
+  padding: 10px;
+  width: 70%;
+  justify-content: center;
+  h1 {
+    text-align: center;
+    display: block;
+  }
+`
 
 const App = () => {
-  const [postData, setPostData] = useState([])
-  const [newData, setNewData] = useState([])
+  const [postData, setPostData] = useState([{ name: 'kate', content: 'hey' }])
 
   return (
-    <div className="container">
-      <div className="row" style={{ 'text-align': 'center' }}>
-        <Title />
-      </div>
-      <div className="row" style={{ 'text-align': 'center' }}>
-        <NewPost setNewData={setNewData} />
-      </div>
-      <div className="row" style={{ 'text-align': 'center' }}>
-        <PostResults newData={newData} postData={postData} />
-      </div>
-    </div>
+    <Container>
+      <Title />
+      <NewPost postData={postData} setPostData={setPostData} />
+      <PostResults postData={postData} />
+    </Container>
   )
 }
 export default App

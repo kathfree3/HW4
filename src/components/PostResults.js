@@ -3,17 +3,12 @@ import React from 'react'
 // local imports
 import Post from './Post'
 
-const PostResults = ({ newData, postData }) => {
-  if (newData.length !== 0) {
-    postData.push(newData)
-  }
-  return (
+const PostResults = ({ postData }) => (
+  postData.map(({ name, content, replies }, i) => (
     <div>
-      {postData.map((p, i) => (
-        <Post name={p.name} content={p.content} key={p} />
-      ))}
+      <Post name={name} content={content} />
     </div>
-  )
-}
+  ))
+)
 
 export default PostResults

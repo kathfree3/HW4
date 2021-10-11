@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
+import s from 'styled-components'
 
+const VoterStyle = s.div`
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+`
 const Voter = () => {
   const [voteCount, setVoteCount] = useState(0)
 
   return (
-    <>
+    <VoterStyle>
       <svg
         onClick={() => setVoteCount(voteCount + 1)}
         width="24"
@@ -34,7 +42,7 @@ const Voter = () => {
       >
         <path d="M6 9l6 6 6-6" />
       </svg>
-    </>
+    </VoterStyle>
   )
 }
 
