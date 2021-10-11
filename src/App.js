@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import Title from './components/Title'
 import NewPost from './components/NewPost'
 import PostResults from './components/PostResults'
-import './App.css'
+// import './App.css'
 
 const App = () => {
   const [postData, setPostData] = useState([])
