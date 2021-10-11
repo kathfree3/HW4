@@ -1,19 +1,19 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+
+// local imports
 import Voter from './Voter'
 
-
-const Post = ({name, content}) => {
-    // state 
-    
-    
-    return (
-        <div>
-            <hr/>
-            <p> {name} </p>
-            <p> {content}</p>
-            <Voter />
-        </div>
-    )
-}
+const Post = ({ name, content }) => (
+  <div className="container">
+    <hr />
+    <p>
+      {name}
+    </p>
+    <p>
+      {content}
+    </p>
+    <Voter />
+  </div>
+)
 
 export default Post
