@@ -6,40 +6,28 @@ import Voter from './Voter'
 import Form from './Form'
 
 const Container = s.div`
-  margin: auto;
-  margin-bottom: 2rem;
-  padding: 10px;
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: block;
+  width: 100%;
   border: 3px solid #f2f2f2;
   border-radius: 3px;
   box-shadow: 5px;
-  align-items: center;
-  p, span {
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
     font-size: 18px;
-  }
-`
-const RowBreak = s.div.attrs(() => ({
-  className: 'row-break',
-}))`
-  flex-basis: 100%;
-  height: 0;
-`
-
-const VoterWrapper = s.span`
-  margin-left: auto;
-  div {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
+    padding: 0;
+    margin: 0 0 1.45rem;
   }
 `
 const Replies = s.div`
   width: 100%; 
-  height: 70%;
   .post-container {
     border: 0px solid;
     border-left: 2px solid;
@@ -62,18 +50,13 @@ const Post = ({ name, content }) => {
 
   return (
     <Container className="post-container">
-      <span>
-        <p className="post-username">
-          {name}
-        </p>
-        <p>
-          {content}
-        </p>
-      </span>
-      <VoterWrapper className="voter-wrapper">
-        <Voter className="voter" />
-      </VoterWrapper>
-      <RowBreak />
+      <Voter />
+      <p className="post-username">
+        {name}
+      </p>
+      <p>
+        {content}
+      </p>
       {makeNewReview && <Form previousName={name} setInputData={addNewReply} inputData={replies} setMakeNewReview={setMakeNewReview} />}
       {hasReplies && renderReplies()}
       <button type="button" onClick={() => setMakeNewReview(!makeNewReview && replies.length < 3)}>

@@ -1,14 +1,23 @@
 import React from 'react'
+import s from 'styled-components'
 
 // local imports
 import Post from './Post'
 
+const Wrapper = s.div`
+  margin: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+`
 const PostResults = ({ postData }) => (
-  postData.map(({ name, content, replies }, i) => (
-    <div>
+  <Wrapper>
+    {postData.map(({ name, content, replies }, i) => (
       <Post name={name} content={content} />
-    </div>
-  ))
+    ))}
+  </Wrapper>
 )
 
 export default PostResults

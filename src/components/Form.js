@@ -13,7 +13,7 @@ const SubmitButton = s.input`
 `
 
 const Input = s.input`
-  display: flex;
+  display: block;
   font-size: 22px;
   border: solid 1px #dbdbdb;
   border-radius: 5px;
@@ -29,11 +29,10 @@ const newReplySpacing = { width: '100%', margin: '0rem' }
 
 const FormContainer = s.div`
   margin: auto;
-  flex-direction: column;
   border: 3px solid #f2f2f2;
   border-radius: 3px;
   padding: 8px;
-  display: flex;
+  display: block;
   margin-bottom: ${props => (props.isNewPost ? newPostSpacing.margin : newReplySpacing.margin)};
   width: ${props => (props.isNewPost ? newPostSpacing.width : newReplySpacing.width)};
   h3 {
