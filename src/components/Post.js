@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import s from 'styled-components'
 
 // local imports
-import { render } from 'react-dom'
 import Voter from './Voter'
-import MakeReply from './MakeReply'
+import Form from './Form'
 
 const Container = s.div`
   margin: auto;
   margin-bottom: 2rem;
-  padding: 15px;
+  padding: 10px;
   width: 80%;
   display: flex;
   flex-wrap: wrap;
@@ -21,18 +20,30 @@ const Container = s.div`
     font-size: 18px;
   }
 `
-const RowBreak = s.div`
+const RowBreak = s.div.attrs(() => ({
+  className: 'row-break',
+}))`
   flex-basis: 100%;
   height: 0;
 `
 
-const VoterStyle = s.span`
+const VoterWrapper = s.span`
   margin-left: auto;
+  div {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 const Replies = s.div`
   width: 100%; 
-  div {
+  height: 70%;
+  .post-container {
+    border: 0px solid;
     border-left: 2px solid;
+    margin: 1rem;
   }
 `
 const Post = ({ name, content }) => {
@@ -42,7 +53,7 @@ const Post = ({ name, content }) => {
   const hasReplies = replies.length !== 0
 
   const renderReplies = () => (
-    <Replies>
+    <Replies className="replies-container">
       {replies.map((elem, i) => (
         <Post name={elem.name} content={elem.content} />
       ))}
@@ -50,7 +61,7 @@ const Post = ({ name, content }) => {
   )
 
   return (
-    <Container>
+    <Container className="post-container">
       <span>
         <p className="post-username">
           {name}
@@ -59,19 +70,15 @@ const Post = ({ name, content }) => {
           {content}
         </p>
       </span>
-      <VoterStyle>
-        <Voter />
-      </VoterStyle>
+      <VoterWrapper className="voter-wrapper">
+        <Voter className="voter" />
+      </VoterWrapper>
       <RowBreak />
+      {makeNewReview && <Form previousName={name} setInputData={addNewReply} inputData={replies} setMakeNewReview={setMakeNewReview} />}
+      {hasReplies && renderReplies()}
       <button type="button" onClick={() => setMakeNewReview(!makeNewReview && replies.length < 3)}>
         Reply
       </button>
-      <RowBreak hidden={!makeNewReview} />
-      <div className="testing" hidden={!makeNewReview}>
-        <MakeReply previousName={name} addNewReply={addNewReply} replies={replies} setMakeNewReview={setMakeNewReview} />
-      </div>
-      <RowBreak />
-      {hasReplies && renderReplies()}
     </Container>
   )
 }

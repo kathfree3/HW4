@@ -4,7 +4,7 @@ import s from 'styled-components'
 
 // local imports
 import Title from './components/Title'
-import NewPost from './components/NewPost'
+import Form from './components/Form'
 import PostResults from './components/PostResults'
 import './App.css'
 
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <Container>
       <Title />
-      <NewPost postData={postData} setPostData={setPostData} />
+      <Form inputData={postData} setInputData={setPostData} h="New Post" previousName="" />
       <PostResults postData={postData} />
     </Container>
   )
