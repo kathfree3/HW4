@@ -18,12 +18,12 @@ const Container = s.div`
 `
 
 const App = () => {
-  const [postData, setPostData] = useState([{ name: 'kate', content: 'hey' }])
+  const [postData, setPostData] = useState([{ name: 'kate', content: 'hey', depth: 0 }])
 
   return (
     <Container>
       <h1> CIS 197 Community </h1>
-      <Form inputData={postData} setInputData={setPostData} h="New Post" previousName="" />
+      <Form inputData={postData} setInputData={setPostData} h="New Post" previousName="" depth={0} />
       <PostResults postData={postData} />
     </Container>
   )

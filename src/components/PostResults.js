@@ -14,8 +14,8 @@ const Wrapper = s.div`
 `
 const PostResults = ({ postData }) => (
   <Wrapper>
-    {postData.map(({ name, content, replies }, i) => (
-      <Post name={name} content={content} />
+    {postData.map(({ name, content, depth }, i) => (
+      <Post name={name} content={content} depth={depth} />
     ))}
   </Wrapper>
 )

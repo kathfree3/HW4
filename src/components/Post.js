@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import s from 'styled-components'
+import { v4 as uuidv4 } from 'uuid'
 
 // local imports
 import Voter from './Voter'
@@ -15,53 +16,62 @@ const Container = s.div`
   border: 3px solid #f2f2f2;
   border-radius: 3px;
   box-shadow: 5px;
+  font-size: 18px;
   p {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    font-size: 18px;
     padding: 0;
     margin: 0 0 1.45rem;
   }
-`
-const Replies = s.div`
-  width: 100%; 
   .post-container {
     border: 0px solid;
-    border-left: 2px solid;
+    border-left: 2px solid #a6a6a6;
     margin: 1rem;
   }
 `
-const Post = ({ name, content }) => {
+
+const ReplyButton = s.button`
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #a6a6a6;
+  border: 0px;
+  font-size: 18px;
+`
+
+const Post = ({ name, content, depth }) => {
   const [makeNewReview, setMakeNewReview] = useState(false)
   const [replies, addNewReply] = useState([])
 
-  const hasReplies = replies.length !== 0
-
   const renderReplies = () => (
-    <Replies className="replies-container">
-      {replies.map((elem, i) => (
-        <Post name={elem.name} content={elem.content} />
-      ))}
-    </Replies>
+    replies.map((elem, i) => (
+      <Post name={elem.name} content={elem.content} depth={elem.depth} />
+    ))
   )
 
   return (
     <Container className="post-container">
       <Voter />
+      <p> depth is {depth} </p>
       <p className="post-username">
         {name}
       </p>
       <p>
         {content}
       </p>
-      {makeNewReview && <Form previousName={name} setInputData={addNewReply} inputData={replies} setMakeNewReview={setMakeNewReview} />}
-      {hasReplies && renderReplies()}
-      <button type="button" onClick={() => setMakeNewReview(!makeNewReview && replies.length < 3)}>
+      {renderReplies()}
+      {depth !== 2 && (
+      <ReplyButton type="button" className="reply-button" onClick={() => setMakeNewReview(!makeNewReview)}>
+        <svg width="24" height="24" fill="none" stroke="#a6a6a6" strokeWidth="1">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg>
         Reply
-      </button>
+      </ReplyButton>
+      )}
+      {makeNewReview && <Form previousName={name} depth={depth + 1} setInputData={addNewReply} inputData={replies} setMakeNewReview={setMakeNewReview} />}
     </Container>
   )
 }

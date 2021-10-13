@@ -42,7 +42,7 @@ const FormContainer = s.div`
 `
 
 const Form = ({
-  setInputData, inputData, setMakeNewReview, h, previousName,
+  setInputData, inputData, setMakeNewReview, h, previousName, depth,
 }) => {
   const [name, setName] = useState('')
   const [content, setContent] = useState(previousName ? `@${previousName}` : '')
@@ -50,7 +50,7 @@ const Form = ({
   const shouldBeDisabled = name === '' || content === ''
 
   const submit = () => {
-    setInputData([...inputData, { name, content }])
+    setInputData([...inputData, { name, content, depth }])
     setName('')
     setContent('')
     if (setMakeNewReview) {
