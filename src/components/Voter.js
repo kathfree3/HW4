@@ -19,10 +19,7 @@ const Voter = () => {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="sc-fzpans cKJzHK"
+        strokeWidth="2.5"
       >
         <path d="M18 15l-6-6-6 6" />
       </svg>
@@ -34,10 +31,7 @@ const Voter = () => {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="sc-fzplWN hRBsWH"
+        strokeWidth="2.5"
       >
         <path d="M6 9l6 6 6-6" />
       </svg>

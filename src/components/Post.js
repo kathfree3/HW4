@@ -47,15 +47,14 @@ const Post = ({ name, content, depth }) => {
   const [replies, addNewReply] = useState([])
 
   const renderReplies = () => (
-    replies.map((elem, i) => (
-      <Post name={elem.name} content={elem.content} depth={elem.depth} />
+    replies.map(({ name: n, content: c, depth: d }, i) => (
+      <Post name={n} content={c} depth={d} />
     ))
   )
 
   return (
     <Container className="post-container">
       <Voter />
-      <p> depth is {depth} </p>
       <p className="post-username">
         {name}
       </p>
