@@ -6,7 +6,6 @@ import Post from './Post'
 
 const Wrapper = s.div`
   margin: auto;
-  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;

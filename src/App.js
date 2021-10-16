@@ -12,9 +12,6 @@ const Container = s.div`
   padding: 10px;
   width: 70%;
   display: block;
-  h1 {
-    text-align: center;
-  }
 `
 
 const App = () => {

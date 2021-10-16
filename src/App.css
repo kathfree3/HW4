@@ -2,17 +2,24 @@ html {
     font-family: Work Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
     box-sizing: border-box;
 }
-* {
+
+*, *:before, *:after {
     box-sizing: inherit;
 }
-*:before {
-    box-sizing: inherit;
+
+
+h1 {
+    text-align: center;
 }
-*:after {
-    box-sizing: inherit;
+h2 {
+    margin: 1rem;
+    font-size: 1.5em;
 }
+
+
 
 .post-username {
     color: blue;
     font-weight: bold;
 }
+
