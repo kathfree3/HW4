@@ -11,7 +11,7 @@ const Container = s.div`
   padding: 0rem 1rem;
   display: block;
   width: 100%;
-  border: 3px solid #f2f2f2;
+  border: 5px solid #f2f2f2;
   border-radius: 3px;
   font-size: 18px;
   .post-container {
@@ -28,14 +28,15 @@ const ReplyButton = s.button`
   background-color: white;
   color: #a6a6a6;
   border: 0px;
+  padding: 0px;
 `
 
 const Post = ({ name, content, depth }) => {
   const [makeNewReview, setMakeNewReview] = useState(false)
   const [replies, addNewReply] = useState([])
 
-  const renderReplies = () => (
-    replies.map(({ name: n, content: c, depth: d }, i) => (
+  const renderReplies = replyData => (
+    replyData.map(({ name: n, content: c, depth: d }, i) => (
       <Post name={n} content={c} depth={d} />
     ))
   )
@@ -49,7 +50,7 @@ const Post = ({ name, content, depth }) => {
       <p>
         {content}
       </p>
-      {renderReplies()}
+      {renderReplies(replies)}
       {depth !== 2 && (
       <ReplyButton type="button" className="reply-button" onClick={() => setMakeNewReview(!makeNewReview)}>
         <svg width="22" height="22" fill="none" stroke="#a6a6a6" strokeWidth="1">

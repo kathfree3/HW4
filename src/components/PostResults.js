@@ -1,5 +1,6 @@
 import React from 'react'
 import s from 'styled-components'
+import { v4 as uuidv4 } from 'uuid'
 
 // local imports
 import Post from './Post'

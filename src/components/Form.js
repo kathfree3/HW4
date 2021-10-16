@@ -13,24 +13,26 @@ const Input = s.input`
 const TextBox = s(Input)`
   color: #262626;
   width: 95%;
-  height: 5%;
 `
 
 const SubmitButton = s(Input)`
-  background: palevioletred;
+  background: #DB7093;
   color: white;
   margin-left: auto;
+  :disabled {
+    background: #F4D1DC;
+  }
 `
 
 const FormContainer = s.div`
   margin: auto;
-  border: 3px solid #f2f2f2;
   border-radius: 3px;
   padding: 5px;
   display: block;
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: ${props => (props.isNewPost ? '80%' : '100%')};
+  border: ${props => (props.isNewPost ? '5px' : '3px')} solid #f2f2f2;
 `
 
 const Form = ({
