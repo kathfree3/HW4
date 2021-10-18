@@ -1,6 +1,5 @@
 import React from 'react'
 import s from 'styled-components'
-import { v4 as uuidv4 } from 'uuid'
 
 // local imports
 import Post from './Post'
@@ -14,8 +13,10 @@ const Wrapper = s.div`
 `
 const PostResults = ({ postData }) => (
   <Wrapper>
-    {postData.map(({ name, content, depth }, i) => (
-      <Post name={name} content={content} depth={depth} />
+    {postData.map(({
+      name, content, depth, postID,
+    }, i) => (
+      <Post name={name} content={content} depth={depth} key={postID} />
     ))}
   </Wrapper>
 )

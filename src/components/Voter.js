@@ -14,24 +14,16 @@ const Voter = () => {
     <VoterWrapper>
       <svg
         onClick={() => setVoteCount(voteCount + 1)}
-        width="24"
-        height="24"
+        className="svg-icon"
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="black"
-        strokeWidth="2.5"
       >
         <path d="M18 15l-6-6-6 6" />
       </svg>
       {voteCount}
       <svg
-        onClick={() => setVoteCount(voteCount - 1)}
-        width="24"
-        height="24"
+        className="svg-icon"
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="black"
-        strokeWidth="2.5"
+        onClick={() => setVoteCount(voteCount - 1)}
       >
         <path d="M6 9l6 6 6-6" />
       </svg>

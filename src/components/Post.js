@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import s from 'styled-components'
-import { v4 as uuidv4 } from 'uuid'
 
 // local imports
 import Voter from './Voter'
@@ -13,7 +12,6 @@ const Container = s.div`
   width: 100%;
   border: 5px solid #f2f2f2;
   border-radius: 3px;
-  font-size: 18px;
   .post-container {
     border: 0px solid;
     border-radius: 0px;
@@ -21,23 +19,24 @@ const Container = s.div`
   }
 `
 
-const ReplyButton = s.button`
+const ReplyButton = s.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  background-color: white;
   color: #a6a6a6;
-  border: 0px;
-  padding: 0px;
 `
 
-const Post = ({ name, content, depth }) => {
+const Post = ({
+  name, content, depth, postID,
+}) => {
   const [makeNewReview, setMakeNewReview] = useState(false)
   const [replies, addNewReply] = useState([])
 
   const renderReplies = replyData => (
-    replyData.map(({ name: n, content: c, depth: d }, i) => (
-      <Post name={n} content={c} depth={d} />
+    replyData.map(({
+      name: n, content: c, depth: d, postID: id,
+    }, i) => (
+      <Post name={n} content={c} depth={d} key={id} />
     ))
   )
 
@@ -52,8 +51,8 @@ const Post = ({ name, content, depth }) => {
       </p>
       {renderReplies(replies)}
       {depth !== 2 && (
-      <ReplyButton type="button" className="reply-button" onClick={() => setMakeNewReview(!makeNewReview)}>
-        <svg width="22" height="22" fill="none" stroke="#a6a6a6" strokeWidth="1">
+      <ReplyButton onClick={() => setMakeNewReview(!makeNewReview)}>
+        <svg className="svg-icon reply">
           <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
         </svg>
         Reply

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import s from 'styled-components'
+import { v4 as uuidv4 } from 'uuid'
 
 const Input = s.input`
   display: block;
-  font-size: 20px;
+  font-size: 1.3rem;
   padding: 10px 24px;
   border: solid 1px #dbdbdb;
   border-radius: 5px;
@@ -24,6 +25,7 @@ const SubmitButton = s(Input)`
   }
 `
 
+// container should have some diff based on if its a reply or new post
 const FormContainer = s.div`
   margin: auto;
   border-radius: 3px;
@@ -41,10 +43,13 @@ const Form = ({
   const [name, setName] = useState('')
   const [content, setContent] = useState(previousName ? `@${previousName}` : '')
 
+  const postID = uuidv4()
   const shouldBeDisabled = name === '' || content === ''
 
   const submit = () => {
-    setInputData([...inputData, { name, content, depth }])
+    setInputData([...inputData, {
+      name, content, depth, postID,
+    }])
     setName('')
     setContent('')
     if (setMakeNewReview) {
