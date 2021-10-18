@@ -1,3 +1,4 @@
+// package imports
 import React, { useState } from 'react'
 import s from 'styled-components'
 
@@ -26,20 +27,20 @@ const ReplyButton = s.div`
   color: #a6a6a6;
 `
 
+// make a new post for each reply
+const renderReplies = replyData => (
+  replyData.map(({
+    name, content, depth, postID,
+  }) => <Post name={name} content={content} depth={depth} key={postID} />)
+)
+
 const Post = ({
   name, content, depth, postID,
 }) => {
   const [makeNewReview, setMakeNewReview] = useState(false)
   const [replies, addNewReply] = useState([])
 
-  const renderReplies = replyData => (
-    replyData.map(({
-      name: n, content: c, depth: d, postID: id,
-    }, i) => (
-      <Post name={n} content={c} depth={d} key={id} />
-    ))
-  )
-
+  // into the make new reply form, increase the depth of any new post you make
   return (
     <Container className="post-container">
       <Voter />

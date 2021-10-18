@@ -1,3 +1,4 @@
+// package imports
 import React, { useState } from 'react'
 import s from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
@@ -41,17 +42,21 @@ const Form = ({
   setInputData, inputData, setMakeNewReview, h, previousName, depth,
 }) => {
   const [name, setName] = useState('')
+  // if a prev name is provided use it, else its a new post/ thread
   const [content, setContent] = useState(previousName ? `@${previousName}` : '')
 
   const postID = uuidv4()
   const shouldBeDisabled = name === '' || content === ''
 
   const submit = () => {
+    // add the new post data into the input data
     setInputData([...inputData, {
       name, content, depth, postID,
     }])
+    // reset name and content in the form
     setName('')
     setContent('')
+    // retoggle button if necessary
     if (setMakeNewReview) {
       setMakeNewReview(false)
     }

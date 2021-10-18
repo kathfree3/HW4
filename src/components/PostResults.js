@@ -1,3 +1,4 @@
+// package imports
 import React from 'react'
 import s from 'styled-components'
 
@@ -15,9 +16,7 @@ const PostResults = ({ postData }) => (
   <Wrapper>
     {postData.map(({
       name, content, depth, postID,
-    }, i) => (
-      <Post name={name} content={content} depth={depth} key={postID} />
-    ))}
+    }) => <Post name={name} content={content} depth={depth} key={postID} />)}
   </Wrapper>
 )
 

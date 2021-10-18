@@ -15,7 +15,7 @@ const Container = s.div`
 `
 
 const App = () => {
-  const [postData, setPostData] = useState([{ name: 'kate', content: 'hey', depth: 0 }])
+  const [postData, setPostData] = useState([])
 
   return (
     <Container>
